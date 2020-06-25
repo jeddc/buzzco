@@ -14,13 +14,12 @@
         <div class="post">
 {% block post %}
           <h1 class="post-title">
-            <a href="{{ url(post) }}">{{ post.title|e }}</a>
+            {{ post.title|e }}
           </h1>
           <span class="post-date">{{ post.date|date("j M Y") }}</span>
-          {{ post.content|excerpt_html }}
+          {{ post.content }}
 {% endblock post %}
         </div>
 {% endfor %}
       </div>
-{% include 'partials/pagination.html.twig' %}
 {% endblock content %}
