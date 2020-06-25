@@ -1,0 +1,20 @@
+{% extends 'page.html.twig' %}
+
+{% block title %}{{ site.title }} &middot; {{ site.baseline }}{% endblock title %}
+
+{% block content %}
+      <div class="posts">
+{% for post in site.pages|filter_by('section', 'blog')|sort_by_date|slice(0, 1) %}
+        <div class="post">
+{% block post %}
+          <h1 class="post-title">{{ post.title }}</h1>
+          <span class="post-date">{{ post.date|date("j M Y") }}</span>
+{% if post.image is defined %}
+          <img src="{{ url(post.image) }}" />
+{% endif %}
+          {{ post.content }}
+{% endblock post %}
+        </div>
+{% endfor %}
+      </div>
+{% endblock content %}

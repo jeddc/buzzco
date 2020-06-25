@@ -1,0 +1,25 @@
+{% set pages = site.pages.all %}
+{% if page.pages is defined %}
+{% set pages = page.pages %}
+{% endif %}
+{% if page.pagination.pages is defined %}
+{% set pages = page.pagination.pages %}
+{% endif %}
+
+{% extends '_default/page.html.twig' %}
+
+{% block content %}
+      <div class="posts">
+{% for post in pages %}
+        <div class="post">
+{% block post %}
+          <h1 class="post-title">
+            {{ post.title|e }}
+          </h1>
+          <span class="post-date">{{ post.date|date("j M Y") }}</span>
+          {{ post.content }}
+{% endblock post %}
+        </div>
+{% endfor %}
+      </div>
+{% endblock content %}
